@@ -30,7 +30,15 @@
       </v-text-field>
     </v-list-tile-content>
     <v-list-tile-action>
-      <v-btn v-if="!editMode" @click="deleteTodo(todo)" color="red lighten-3" flat icon>
+      <v-progress-circular
+        v-if="isLoading"
+        class="ma-1"
+        indeterminate
+        size="24"
+        color="blue"
+      >
+      </v-progress-circular>
+      <v-btn v-else-if="!editMode" @click="deleteTodo(todo)" color="red lighten-3" flat icon>
         <v-icon>close</v-icon>
       </v-btn>
       <v-btn v-else @click="resetEditMode" flat icon color="blue">
@@ -50,6 +58,7 @@ export default {
   },
   data() {
     return {
+      isLoading: false,
       editMode: false,
       editTitle: ''
     }
@@ -57,16 +66,22 @@ export default {
   methods: {
     ...mapActions(['updateTodo', 'removeTodo']),
     async toggleTodo(todo) {
+      this.isLoading = true
       const params = { completed: !todo.completed, title: this.todo.title };
       await this.updateTodo({ params, todo });
+      this.isLoading = false
     },
     async editTodo(todo) {
+      this.isLoading = true
       const params = { completed: todo.completed, title: this.editTitle };
       await this.updateTodo({ params, todo });
       this.resetEditMode()
+      this.isLoading = false
     },
     async deleteTodo(todo) {
+      this.isLoading = true
       await this.removeTodo(todo);
+      this.isLoading = false
     },
     setEditMode(title) {
       this.editTitle = title

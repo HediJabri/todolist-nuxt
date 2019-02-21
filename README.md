@@ -18,7 +18,7 @@ By [Hedi Jabri](https://github.com/HediJabri)
 
 ## Technologies
 
-This app is made with Vue.js & Nuxt.js, build with the create-nuxt-app cli (Vuetify, Axios, Vuex modules)
+This app is made with Vue.js & Nuxt.js, built with the create-nuxt-app cli (Vuetify, Axios, Vuex modules)
 I also used [JSONPlaceholder](https://jsonplaceholder.typicode.com/) as a fake REST API.
 
 ## Features

@@ -2,13 +2,16 @@
   <v-layout row>
     <v-flex sm6 offset-sm3 text-xs-center>
       <h1 id="title">TODO LIST</h1>
+       <todo-input />
     </v-flex>
   </v-layout>
 </template>
 
 <script>
+import  TodoInput from '@/components/TodoInput';
 
 export default {
+  components: { TodoInput },
   async fetch ({ store, params }) {
     await store.dispatch('setTodos');
   }

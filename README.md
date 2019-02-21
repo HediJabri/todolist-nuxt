@@ -10,7 +10,7 @@ By [Hedi Jabri](https://github.com/HediJabri)
 
 ## Instructions
 
-1. Clone locally using `git clone git@github.com:HediJabri/countdown-timer.git`
+1. Clone locally using `git clone git@github.com:HediJabri/todolist-nuxt.git`
 2. Install dependencies using `npm install`
 3. Start your server using `npm run dev`
 4. Navigate to app in [browser](http://localhost:3000)

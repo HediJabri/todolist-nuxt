@@ -25,7 +25,7 @@ const createStore = () => {
     actions: {
       async setTodos ({ commit }) {
         try {
-          const { data } = await this.$axios.get('/todos?userId=1')
+          const { data } = await this.$axios.get('/todos?userId=11')
           if (data) commit('SET_TODOS', data)
         } catch (error) {
           console.error(error)

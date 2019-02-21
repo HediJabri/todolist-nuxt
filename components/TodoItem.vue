@@ -1,11 +1,11 @@
 <template>
    <v-list-tile>
     <v-list-tile-action>
-      <v-btn v-if="!editMode" flat icon color="blue">
+      <v-btn v-if="!editMode" @click="toggleTodo(todo)" flat icon color="blue">
         <v-icon v-if="todo.completed" color="blue">done_all</v-icon>
         <v-icon v-else color="blue lighten-4">done</v-icon>
       </v-btn>
-      <v-btn v-else flat icon color="blue">
+      <v-btn v-else @click="editTodo(todo)" flat icon color="blue">
         <v-icon color="blue lighten-2">edit</v-icon>
       </v-btn>
     </v-list-tile-action>
@@ -30,7 +30,7 @@
       </v-text-field>
     </v-list-tile-content>
     <v-list-tile-action>
-      <v-btn v-if="!editMode" color="red lighten-3" flat icon>
+      <v-btn v-if="!editMode" @click="deleteTodo(todo)" color="red lighten-3" flat icon>
         <v-icon>close</v-icon>
       </v-btn>
       <v-btn v-else @click="resetEditMode" flat icon color="blue">
@@ -55,6 +55,19 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['updateTodo', 'removeTodo']),
+    async toggleTodo(todo) {
+      const params = { completed: !todo.completed, title: this.todo.title };
+      await this.updateTodo({ params, todo });
+    },
+    async editTodo(todo) {
+      const params = { completed: todo.completed, title: this.editTitle };
+      await this.updateTodo({ params, todo });
+      this.resetEditMode()
+    },
+    async deleteTodo(todo) {
+      await this.removeTodo(todo);
+    },
     setEditMode(title) {
       this.editTitle = title
       this.editMode = true

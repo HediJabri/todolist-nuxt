@@ -16,7 +16,7 @@ const createStore = () => {
     actions: {
       async setTodos ({ commit }) {
         try {
-          const { data } = await this.$axios.get('/todos?userId=11')
+          const { data } = await this.$axios.get('/todos?userId=1')
           if (data) commit('SET_TODOS', data)
         } catch (error) {
           console.error(error)
@@ -34,7 +34,7 @@ const createStore = () => {
     getters: {
       todos(state) {
         return state.todos;
-      },
+      }
     }
   });
 };

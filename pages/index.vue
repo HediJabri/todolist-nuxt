@@ -3,15 +3,17 @@
     <v-flex sm6 offset-sm3 text-xs-center>
       <h1 id="title">TODO LIST</h1>
        <todo-input />
+       <todo-list />
     </v-flex>
   </v-layout>
 </template>
 
 <script>
 import  TodoInput from '@/components/TodoInput';
+import  TodoList from '@/components/TodoList';
 
 export default {
-  components: { TodoInput },
+  components: { TodoInput, TodoList },
   async fetch ({ store, params }) {
     await store.dispatch('setTodos');
   }

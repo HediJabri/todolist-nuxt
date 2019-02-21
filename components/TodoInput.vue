@@ -43,6 +43,7 @@ export default {
       newTodo: {
         title: '',
         completed: false,
+        userId: 11,
       }
     }
   },
@@ -50,9 +51,9 @@ export default {
     ...mapActions(['addTodo']),
     async createTodo() {
       if (this.newTodo.title.length) {
-        let todo = this.newTodo
-        await this.addTodo(todo);
+        let todo = { ...this.newTodo };
         this.newTodo.title = ''
+        await this.addTodo(todo);
       }
     }
   }

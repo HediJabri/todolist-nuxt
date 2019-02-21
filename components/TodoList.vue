@@ -1,7 +1,7 @@
 <template>
   <v-card class="mt-4" v-if="todos.length">
     <v-card-actions class="px-2" v-show="todos.length">
-      <v-icon color="blue" :class="allTodosDone && 'completed' || 'text--lighten-4'">
+      <v-icon color="blue" :class="{'text--lighten-4': !allTodosDone}">
         playlist_add_check
       </v-icon>
       <v-spacer></v-spacer>

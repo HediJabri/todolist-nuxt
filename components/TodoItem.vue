@@ -13,7 +13,7 @@
       <v-list-tile-title
         v-if="!editMode"
         class="blue--text"
-        :class="todo.completed && 'completed' || 'text--lighten-2 '"
+        :class="todo.completed && 'completed' || 'text--lighten-2'"
       >
         <span>{{ todo.title }}</span>
       </v-list-tile-title>
@@ -54,7 +54,6 @@ export default {
   name: 'TodoItem',
   props: {
     todo: { type: Object, required: true },
-    i: { type: Number, required: true }
   },
   data() {
     return {

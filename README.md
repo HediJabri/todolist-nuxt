@@ -23,14 +23,14 @@ I also used [JSONPlaceholder](https://jsonplaceholder.typicode.com/) as a fake R
 
 ## Features
 
-This project is a simple Todo List App with basic CRUD actions. Here the full features list:
+This project is a simple Todo List App with basic CRUD actions. Here is the full features list:
 
 Required
 - Create a new Todo (press enter on input or click on the + icon)
 - Mark a todo as done a (click on the check icon)
-- Edit a todo (Double-click on the todo text - press esc to cancel)
+- Edit a todo (Double-click on the todo text => press enter to validate / esc to cancel)
 - Delete a todo (click on the cross icon)
 
 Bonus
-- Added individual circular loaders for each "todos actions" which make a server request
+- Circular loaders for each todo item (to cover server response time)
 - Filtering todos by status (done / todo)

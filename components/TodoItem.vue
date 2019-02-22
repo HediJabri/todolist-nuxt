@@ -1,11 +1,11 @@
 <template>
    <v-list-tile>
     <v-list-tile-action>
-      <v-btn v-if="!editMode" @click="toggleTodo(todo)" flat icon color="blue">
+      <v-btn v-if="!editMode" @click="load(toggleTodo, todo)" flat icon color="blue">
         <v-icon v-if="todo.completed" color="blue">done_all</v-icon>
         <v-icon v-else color="blue lighten-4">done</v-icon>
       </v-btn>
-      <v-btn v-else @click="editTodo(todo)" flat icon color="blue">
+      <v-btn v-else @click="load(editTodo, todo)" flat icon color="blue">
         <v-icon color="blue lighten-2">edit</v-icon>
       </v-btn>
     </v-list-tile-action>
@@ -20,7 +20,7 @@
       <v-text-field
         v-else
         v-model="editTitle"
-        @keyup.enter="editTodo(todo)"
+        @keyup.enter="load(editTodo, todo)"
         @keyup.esc="resetEditMode"
         flat
         solo
@@ -38,7 +38,7 @@
         color="blue"
       >
       </v-progress-circular>
-      <v-btn v-else-if="!editMode" @click="deleteTodo(todo)" color="red lighten-3" flat icon>
+      <v-btn v-else-if="!editMode" @click="load(deleteTodo, todo)" color="red lighten-3" flat icon>
         <v-icon>close</v-icon>
       </v-btn>
       <v-btn v-else @click="resetEditMode" flat icon color="blue">
@@ -64,23 +64,22 @@ export default {
   },
   methods: {
     ...mapActions(['updateTodo', 'removeTodo']),
-    async toggleTodo(todo) {
+    async load(funct, args) {
       this.isLoading = true
-      const params = { completed: !todo.completed, title: this.todo.title };
-      await this.updateTodo({ params, todo });
+      await funct(args)
       this.isLoading = false
     },
+    async toggleTodo(todo) {
+      const params = { completed: !todo.completed, title: this.todo.title };
+      await this.updateTodo({ params, todo });
+    },
     async editTodo(todo) {
-      this.isLoading = true
       const params = { completed: todo.completed, title: this.editTitle };
       await this.updateTodo({ params, todo });
       this.resetEditMode()
-      this.isLoading = false
     },
     async deleteTodo(todo) {
-      this.isLoading = true
       await this.removeTodo(todo);
-      this.isLoading = false
     },
     setEditMode(title) {
       this.editTitle = title

@@ -12,8 +12,8 @@ const createStore = () => {
       ADD_TODO(state, todo) {
         state.todos.push(todo)
       },
-      UPDATE_TODO(state, { data, todo }) {
-        const index = state.todos.indexOf(todo)
+      UPDATE_TODO(state, data) {
+        const index = state.todos.findIndex(todo => todo._id === data._id)
         state.todos[index].completed = data.completed
         state.todos[index].title = data.title
       },
@@ -25,7 +25,7 @@ const createStore = () => {
     actions: {
       async setTodos ({ commit }) {
         try {
-          const { data } = await this.$axios.get('/todos?userId=11')
+          const { data } = await this.$axios.get('/todos')
           if (data) commit('SET_TODOS', data)
         } catch (error) {
           console.error(error)
@@ -41,15 +41,15 @@ const createStore = () => {
       },
       async updateTodo ({ commit }, { params, todo }) {
         try {
-          const { data } = await this.$axios.patch(`/todos/${todo.id}`, params )
-          if (data) commit('UPDATE_TODO', { data, todo })
+          const { data } = await this.$axios.patch(`/todos/${todo._id}`, params )
+          if (data) commit('UPDATE_TODO', data)
         } catch (error) {
           console.error(error)
         }
       },
       async removeTodo ({ commit }, todo) {
         try {
-          await this.$axios.delete(`/todos/${todo.id}`)
+          await this.$axios.delete(`/todos/${todo._id}`)
           commit('REMOVE_TODO', todo)
         } catch (error) {
           console.error(error)

@@ -50,7 +50,7 @@ export default {
       newTodo: {
         title: '',
         completed: false,
-        userId: 11,
+        user: 1,
       }
     }
   },

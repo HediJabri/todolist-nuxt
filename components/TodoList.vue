@@ -17,7 +17,7 @@
     <v-list class="pa-0">
       <template v-for="(todo, i) in filteredTodos">
         <v-divider :key="`${i}-divider`"></v-divider>
-        <todo-item :todo="todo" :key="`${i}-${todo.id}`" />
+        <todo-item :todo="todo" :key="todo._id" />
       </template>
     </v-list>
   </v-card>

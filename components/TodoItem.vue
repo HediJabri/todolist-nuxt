@@ -10,13 +10,19 @@
       </v-btn>
     </v-list-tile-action>
     <v-list-tile-content @dblclick="setEditMode(todo.title)">
-      <v-list-tile-title
-        v-if="!editMode"
-        class="blue--text"
-        :class="todo.completed && 'completed' || 'text--lighten-2'"
-      >
-        <span>{{ todo.title }}</span>
-      </v-list-tile-title>
+      <v-layout v-if="!editMode" align-center justify-start>
+        <v-list-tile-title
+          class="blue--text"
+          :class="todo.completed && 'completed' || 'text--lighten-2'"
+        >
+          <span>{{ todo.title }}</span>
+        </v-list-tile-title>
+        <div class="item">
+          <v-btn color="blue lighten-3" flat icon @click="routeTo(todo._id)">
+            <v-icon>forward</v-icon>
+          </v-btn>
+        </div>
+      </v-layout>
       <v-text-field
         v-else
         v-model="editTitle"
@@ -88,12 +94,24 @@ export default {
     resetEditMode() {
       this.editTitle = ''
       this.editMode = false
+    },
+    routeTo(id) {
+      this.$router.push(`todos/${id}`)
     }
   }
 }
 </script>
 
 <style scoped>
+  .list__tile__content .item {
+    display: none
+  }
+  .list__tile__content:hover .item {
+    display: flex
+  }
+  .list__tile__title:hover span{
+    cursor: pointer;
+  }
   .completed {
     text-decoration: line-through!important;
   }

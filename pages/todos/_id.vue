@@ -20,6 +20,7 @@
            <v-btn flat icon color="blue">
             <v-icon color="blue">done_all</v-icon>
           </v-btn>
+          <span>{{ todo.title }}</span>
         </v-card-title>
       </v-card>
     </v-flex>
@@ -27,8 +28,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 
 export default {
+  async fetch ({ store, params }) {
+    await store.dispatch('setTodo', params.id);
+  },
+  computed: {
+    ...mapGetters(['todo']),
+  },
   methods: {
     backToHome() {
       this.$router.push('/')

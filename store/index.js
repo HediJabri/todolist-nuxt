@@ -4,10 +4,14 @@ const createStore = () => {
   return new Vuex.Store({
     state: {
       todos: [],
+      todo: {}
     },
     mutations: {
       SET_TODOS(state, todos) {
         state.todos = todos;
+      },
+      SET_TODO(state, todo) {
+        state.todo = todo;
       },
       ADD_TODO(state, todo) {
         state.todos.push(todo)
@@ -27,6 +31,15 @@ const createStore = () => {
         try {
           const { data } = await this.$axios.get('/todos')
           if (data) commit('SET_TODOS', data)
+        } catch (error) {
+          console.error(error)
+        }
+      },
+      async setTodo ({ commit }, id) {
+        try {
+          const { data } = await this.$axios.get(`/todos/${id}`)
+          if (data) commit('SET_TODO', data)
+          console.log(data)
         } catch (error) {
           console.error(error)
         }
@@ -59,6 +72,9 @@ const createStore = () => {
     getters: {
       todos(state) {
         return state.todos;
+      },
+      todo(state) {
+        return state.todo;
       }
     }
   });

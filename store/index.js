@@ -1,4 +1,4 @@
-import Vuex from "vuex";
+import Vuex from 'vuex'
 
 const createStore = () => {
   return new Vuex.Store({
@@ -8,89 +8,86 @@ const createStore = () => {
     },
     mutations: {
       RESET_TODO(state) {
-        state.todo = null;
+        state.todo = null
       },
       SET_TODO(state, todo) {
-        state.todo = todo;
+        state.todo = todo
       },
       SET_TODOS(state, todos) {
-        state.todos = todos;
+        state.todos = todos
       },
       ADD_TODO(state, todo) {
-        state.todos.push(todo);
+        state.todos.push(todo)
       },
       UPDATE_TODO(state, data) {
-        let todo;
+        let todo
         if (state.todos.length)
-          todo = state.todos.find(todo => todo._id === data._id);
+          todo = state.todos.find(todo => todo._id === data._id)
         if (todo) {
-          todo.completed = data.completed;
-          todo.title = data.title;
+          todo.completed = data.completed
+          todo.title = data.title
         }
-        if (state.todo && state.todo._id === data._id) state.todo = data;
+        if (state.todo && state.todo._id === data._id) state.todo = data
       },
       REMOVE_TODO(state, todo) {
-        const index = state.todos.indexOf(todo);
-        state.todos.splice(index, 1);
+        const index = state.todos.indexOf(todo)
+        state.todos.splice(index, 1)
       }
     },
     actions: {
       resetTodo({ commit }) {
-        commit("RESET_TODO");
+        commit('RESET_TODO')
       },
       async setTodo({ commit }, id) {
         try {
-          const { data } = await this.$axios.get(`/todos/${id}`);
-          if (data) commit("SET_TODO", data);
+          const { data } = await this.$axios.get(`/todos/${id}`)
+          if (data) commit('SET_TODO', data)
         } catch (error) {
-          console.error(error);
+          // TODO notif error
         }
       },
       async setTodos({ commit }) {
         try {
-          const { data } = await this.$axios.get("/todos");
-          if (data) commit("SET_TODOS", data);
+          const { data } = await this.$axios.get('/todos')
+          if (data) commit('SET_TODOS', data)
         } catch (error) {
-          console.error(error);
+          // TODO notif error
         }
       },
       async addTodo({ commit }, todo) {
         try {
-          const { data } = await this.$axios.post("/todos", todo);
-          if (data) commit("ADD_TODO", data);
+          const { data } = await this.$axios.post('/todos', todo)
+          if (data) commit('ADD_TODO', data)
         } catch (error) {
-          console.error(error);
+          // TODO notif error
         }
       },
       async updateTodo({ commit }, { params, todo }) {
         try {
-          const { data } = await this.$axios.patch(
-            `/todos/${todo._id}`,
-            params
-          );
-          if (data) commit("UPDATE_TODO", data);
+          const { data } = await this.$axios.patch(`/todos/${todo._id}`, params)
+          if (data) commit('UPDATE_TODO', data)
         } catch (error) {
-          console.error(error);
+          // TODO notif error
         }
       },
       async removeTodo({ commit }, todo) {
         try {
-          await this.$axios.delete(`/todos/${todo._id}`);
-          commit("REMOVE_TODO", todo);
+          await this.$axios.delete(`/todos/${todo._id}`)
+          commit('REMOVE_TODO', todo)
         } catch (error) {
-          console.error(error);
+          // TODO notif error
         }
       }
     },
     getters: {
       todos(state) {
-        return state.todos;
+        return state.todos
       },
       todo(state) {
-        return state.todo;
+        return state.todo
       }
     }
-  });
-};
+  })
+}
 
-export default createStore;
+export default createStore

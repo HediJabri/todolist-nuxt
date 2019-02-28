@@ -1,7 +1,7 @@
 <template>
-   <v-card class="mt-4">
+  <v-card class="mt-4">
     <v-list class="pa-0">
-      <v-list-tile :class="{'disabled': isLoading}">
+      <v-list-tile :class="{ disabled: isLoading }">
         <v-list-tile-action>
           <v-icon color="blue">assignment</v-icon>
         </v-list-tile-action>
@@ -30,7 +30,13 @@
             color="blue"
           >
           </v-progress-circular>
-          <v-btn v-else-if="newTodo.title.length" @click="createTodo" flat icon color="blue">
+          <v-btn
+            v-else-if="newTodo.title.length"
+            @click="createTodo"
+            flat
+            icon
+            color="blue"
+          >
             <v-icon color="blue">add_circle</v-icon>
           </v-btn>
         </v-list-tile-action>
@@ -40,17 +46,17 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'TodoInput',
-  data () {
+  data() {
     return {
       isLoading: false,
       newTodo: {
         title: '',
         completed: false,
-        user: 1,
+        user: 1
       }
     }
   },
@@ -59,9 +65,9 @@ export default {
     async createTodo() {
       if (this.newTodo.title.length) {
         this.isLoading = true
-        let todo = { ...this.newTodo };
+        let todo = { ...this.newTodo }
         this.newTodo.title = ''
-        await this.addTodo(todo);
+        await this.addTodo(todo)
         this.isLoading = false
       }
     }

@@ -9,12 +9,11 @@
 </template>
 
 <script>
-  export default {
-  }
+export default {}
 </script>
 <style>
-  #default-layout {
-    background-image: linear-gradient(to bottom, #1f69bd, #39A4F0);
-    min-height: 100vh;
-  }
+#default-layout {
+  background-image: linear-gradient(to bottom, #1f69bd, #39a4f0);
+  min-height: 100vh;
+}
 </style>

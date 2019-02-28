@@ -12,14 +12,14 @@ import TodoShow from '@/components/TodoShow'
 
 export default {
   components: { TodoShow },
-  async fetch ({ store, params }) {
-    await store.dispatch('setTodo', params.id);
+  async fetch({ store, params }) {
+    await store.dispatch('setTodo', params.id)
   }
 }
 </script>
 <style>
 #title {
-  font-family: "Avenir", "Helvetica", "sans-serif";
+  font-family: 'Avenir', 'Helvetica', 'sans-serif';
   font-weight: 100;
   color: white;
   opacity: 0.8;

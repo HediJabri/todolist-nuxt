@@ -61,7 +61,7 @@ export default {
   props: {
     todo: { type: Object, required: true },
   },
-  data() {
+  data () {
     return {
       isLoading: false,
       editMode: false,
@@ -70,32 +70,32 @@ export default {
   },
   methods: {
     ...mapActions(['updateTodo', 'removeTodo']),
-    async load(funct, args) {
+    async load (funct, args) {
       this.isLoading = true
       await funct(args)
       this.isLoading = false
     },
-    async toggleTodo(todo) {
+    async toggleTodo (todo) {
       const params = { completed: !todo.completed, title: this.todo.title };
       await this.updateTodo({ params, todo });
     },
-    async editTodo(todo) {
+    async editTodo (todo) {
       const params = { completed: todo.completed, title: this.editTitle };
       await this.updateTodo({ params, todo });
       this.resetEditMode()
     },
-    async deleteTodo(todo) {
+    async deleteTodo (todo) {
       await this.removeTodo(todo);
     },
-    setEditMode(title) {
+    setEditMode (title) {
       this.editTitle = title
       this.editMode = true
     },
-    resetEditMode() {
+    resetEditMode () {
       this.editTitle = ''
       this.editMode = false
     },
-    routeTo(id) {
+    routeTo (id) {
       this.$router.push(`todos/${id}`)
     }
   }
@@ -103,16 +103,16 @@ export default {
 </script>
 
 <style scoped>
-  .list__tile__content .item {
-    display: none
-  }
-  .list__tile__content:hover .item {
-    display: flex
-  }
-  .list__tile__title:hover span{
-    cursor: pointer;
-  }
-  .completed {
-    text-decoration: line-through!important;
-  }
+.list__tile__content .item {
+  display: none;
+}
+.list__tile__content:hover .item {
+  display: flex;
+}
+.list__tile__title:hover span {
+  cursor: pointer;
+}
+.completed {
+  text-decoration: line-through !important;
+}
 </style>

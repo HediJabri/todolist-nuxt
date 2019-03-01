@@ -95,10 +95,10 @@ export default {
     TodoWrapperActions
   },
   computed: {
-    ...mapGetters(['todo'])
+    ...mapGetters('todos', ['todo'])
   },
   methods: {
-    ...mapActions(['resetTodo'])
+    ...mapActions('todos', ['resetTodo'])
   },
   destroyed() {
     this.resetTodo()

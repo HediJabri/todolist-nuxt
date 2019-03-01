@@ -15,7 +15,7 @@ import TodoList from '@/components/TodoList'
 export default {
   components: { TodoInput, TodoList },
   async fetch({ store }) {
-    await store.dispatch('setTodos')
+    await store.dispatch('todos/setTodos')
   }
 }
 </script>

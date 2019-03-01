@@ -61,7 +61,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['addTodo']),
+    ...mapActions('todos', ['addTodo']),
     async createTodo() {
       if (this.newTodo.title.length) {
         this.isLoading = true

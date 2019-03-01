@@ -11,7 +11,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['updateTodo', 'removeTodo']),
+    ...mapActions('todos', ['updateTodo', 'removeTodo']),
     async load(funct, args) {
       this.isLoading = true
       await funct(args)

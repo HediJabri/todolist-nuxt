@@ -13,7 +13,7 @@ import TodoShow from '@/components/TodoShow'
 export default {
   components: { TodoShow },
   async fetch({ store, params }) {
-    await store.dispatch('setTodo', params.id)
+    await store.dispatch('todos/setTodo', params.id)
   }
 }
 </script>

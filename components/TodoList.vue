@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mt-4" v-if="todos.length">
+  <v-card class="mt-4" v-if="todos && todos.length">
     <v-card-actions class="px-2" v-show="todos.length">
       <v-icon color="blue" :class="{ 'text--lighten-4': !allTodosDone }">
         playlist_add_check
@@ -40,7 +40,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['todos']),
+    ...mapGetters('todos', ['todos']),
     filteredTodos() {
       if (this.activeFilter === 'todo')
         return this.todos.filter(todo => !todo.completed)

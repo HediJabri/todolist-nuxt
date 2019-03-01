@@ -29,6 +29,10 @@ export default {
     async deleteTodo(todo) {
       await this.removeTodo(todo)
     },
+    async deleteTodoAndBackHome(todo) {
+      await this.removeTodo(todo)
+      this.backToHome()
+    },
     setEditMode(title) {
       this.editTitle = title
       this.editMode = true
@@ -36,6 +40,9 @@ export default {
     resetEditMode() {
       this.editTitle = ''
       this.editMode = false
+    },
+    backToHome() {
+      this.$router.push('/')
     }
   },
   render() {
@@ -48,7 +55,8 @@ export default {
       todoActions: {
         toggle: todo => this.toggleTodo(todo),
         edit: todo => this.editTodo(todo),
-        delete: todo => this.deleteTodo(todo)
+        delete: todo => this.deleteTodo(todo),
+        deleteAndBackHome: todo => this.deleteTodoAndBackHome(todo)
       },
       todoEditMode: {
         reset: this.resetEditMode,

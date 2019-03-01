@@ -54,8 +54,7 @@
             solo
             autofocus
             hide-details
-          >
-          </v-text-field>
+          ></v-text-field>
         </v-list-tile-content>
         <v-list-tile-action>
           <v-progress-circular
@@ -64,8 +63,7 @@
             indeterminate
             size="24"
             color="blue"
-          >
-          </v-progress-circular>
+          ></v-progress-circular>
           <v-btn
             v-else-if="!todoData.editMode"
             @click="load(todoActions.delete, todo)"
